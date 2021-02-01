@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg border-bottom fixed-top" id="mainNav">
+    <div class="container">        
+          <a class="navbar-brand js-scroll-trigger" href="{{ url_for('main.index') }}">
+              <img src="{{ url_for('static', filename='img/fotogal-logo_300x82_transp.png') }}" class="img-fluid w-50">
+          </a>
+          <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+                  type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                  aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+          </button>
+          <form method="post" id="id_form_people_search" class="form-inline">               
+               <div class="row">
+                 <div class="col text-right">
+                    <input type="text" class="bg-light form-control form-control-sm" placeholder="Pesquisar ...">                 
+                 </div>
+                 <div class="col text-left">
+                    <button type="button" class="btn btn-primary btn-sm">Pesquisar</button>
+                 </div>
+             </div>
+          </form>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item mx-0 mx-lg-1"> &nbsp; </li>
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url_for('main.about') }}">Sobre</a></li>
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url_for('auth.logoff') }}">Logoff</a></li>
+              </ul>
+          </div>            
+    </div>
+</nav>

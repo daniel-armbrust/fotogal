@@ -1,0 +1,128 @@
+{% extends "__base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block head %}
+   {{ super() }}
+   <meta name="robots" content="noindex, nofollow">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">      
+{% endblock %}
+{% block body %}
+    {% include "__top_menu.html" %}      
+    <div id="id_page_content">
+        <div class="container">           
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    {% if profile_owner %}
+                        <a href="{{ url_for('main.edit_profile', username=username) }}" class="text-decoration-none">        
+                            <img src="{{ url_for('static', filename='img/ajax-loading-profile.gif') }}" 
+                                 alt="{{ username }}" class="lazy img-fluid img-thumbnail rounded-circle ml-3" style="max-width: 160px;"
+                                 {% if profile_dict.profile_image_url %}
+                                    data-src="{{ profile_dict.profile_image_url }}">
+                                 {% else %}
+                                    data-src="{{ url_for('static', filename='img/no-picture.png') }}">
+                                 {% endif %}       
+                        </a>     
+                    {% else %}
+                        <img src="{{ url_for('static', filename='img/ajax-loading-profile.gif') }}" 
+                             alt="{{ username }}" class="lazy img-fluid img-thumbnail rounded-circle ml-3" style="max-width: 160px;"
+                             {% if profile_dict.profile_image_url %}
+                                data-src="{{ profile_dict.profile_image_url }}">
+                             {% else %}
+                                data-src="{{ url_for('static', filename='img/no-picture.png') }}">
+                             {% endif %}       
+                    {% endif %}
+                </div>
+                <div class="col-md-5 text-left">
+                    <h1 class="h2 text-lowercase"> 
+                        {% if profile_owner %}
+                           <a href="{{ url_for('main.edit_profile', username=username) }}" class="text-reset text-decoration-none"> {{ username }}  </a>
+                        {% else %}
+                           <span class="text-reset text-decoration-none"> {{ username }} </span>
+                        {% endif %}
+                    </h1>
+                    <div class="row">
+                        <div class="col"> <p> <span class="font-weight-bold"> {{ imgs_posted_total }} </span> postagens </p> </div>
+                        <div class="col"> <p> <span class="font-weight-bold"> {{ followers_total }} </span> seguidores </p> </div>
+                        <div class="col"> <p> <span class="font-weight-bold"> {{ following_total }} </span> seguindo </p> </div>
+                    </div>           
+                    <div class="row">
+                        <div class="col"> <br> 
+                            <h2 class="h4 font-weight-bold"> 
+                                {% if profile_owner %}
+                                   <a href="{{ url_for('main.edit_profile', username=username) }}" class="text-reset text-decoration-none"> {{ profile_dict.full_name }} </a>
+                                {% else %}
+                                   <span class="text-reset text-decoration-none"> {{ profile_dict.full_name }} </span>
+                                {% endif %}
+                            </h2> 
+                        </div>
+                    </div>    
+                </div>
+                {% if profile_owner %}
+                    <div class="col-auto text-left">
+                        <a class="btn btn-outline-secondary" href="{{ url_for('main.edit_profile', username=username) }}" role="button">
+                            &nbsp;&nbsp;Editar Perfil&nbsp;&nbsp;
+                        </a>             
+                    </div>
+                {% endif %}
+            </div>     
+        </div>    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <hr style="height:2px; border:none; color:#EEEEEE; background-color:#EEEEEE;">
+                </div>
+            </div>
+            <div class="row pb-4">
+                <div class="col-md-12 text-center">
+                    {% if profile_owner %} 
+                       <h3 class="h6 font-weight-bold text-uppercase"> Suas Postagens </h3>
+                    {% else %}
+                       <h3 class="h6 font-weight-bold text-uppercase"> Postagens </h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>    
+        {% if imgs_list %}
+        <div class="container">
+            <div class="row">
+                {% for posted_image in imgs_list %}    
+                    <div class="col-3 mb-4" id="id_posted_image_col_{{ loop.index }}">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <img src="{{ url_for('static', filename='img/ajax-loading-card.gif') }}" id="id_posted_image_{{ loop.index }}"
+                                     data-src="/{{ username }}/image/{{ posted_image.image_filename }}"
+                                     class="lazy card-img-top img-fluid" alt="my-image-{{ loop.index }}">
+                                {% if profile_owner %}
+                                    <div class="text-right pt-2">
+                                        <a href="#" onclick="showPhotoDeleteModal('id_modal_display', 'id_posted_image_{{ loop.index }}', 'id_posted_image_col_{{ loop.index }}');">                              
+                                        <img src="{{ url_for('static', filename='img/trash_icon.png') }}" id="id_delete_image_{{ loop.index }}" 
+                                                style="max-width: 20px;" title="Apagar" alt="Apagar">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>                    
+                    {% if loop.index % 4 == 0 and not loop.last %}
+                        </div><div class="row">
+                    {% endif %}    
+                {% endfor %}
+            </div>    
+            <div id="id_modal_display"></div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block footer %}
+   {% include "__footer.html" %}
+{% endblock %}
+{% block body_scripts %}
+   <script src="{{ url_for('static', filename='js/fotogal-lib.js') }}"></script>
+   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazy.min.js') }}"></script>
+   <script type="text/javascript">
+       const CSRF_TOKEN = '{{ csrf_token() }}';
+       
+       $(function() {
+          $('.lazy').Lazy();
+       });       
+   </script>   
+{% endblock %}

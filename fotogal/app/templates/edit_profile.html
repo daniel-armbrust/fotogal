@@ -1,0 +1,229 @@
+{% extends "__base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block head %}
+   {{ super() }}
+   <meta name="robots" content="noindex, nofollow">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">      
+{% endblock %}
+{% block body %}
+    {% include "__top_menu.html" %}      
+    <div id="id_page_content">
+        <div class="container">
+            <div class="row">         
+                <div class="col-12">
+                    <div class="bg-white shadow border w-100 p-2">
+                        <div class="row">
+                            <div class="col-md-3 ml-2" id="id_profile_left_menu" style="border-right: 1px solid #EEEEEE;">
+                                <div class="row">
+                                    <div class="col ml-1" id="id_col_edit_profile" style="border-left: 4px solid #810BD3;">                                        
+                                        <br> 
+                                        <p><a href="{{ url_for('main.edit_profile', username=username) }}" class="text-decoration-none text-reset h5">Editar Perfil</a></p>                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col ml-1" id="id_col_change_password">
+                                        <br>
+                                        <p><a href="{{ url_for('main.edit_profile_passwd', username=username) }}" class="text-reset h5">Alterar Senha</a></p>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-8">
+                                <form class="needs-validation" novalidate enctype="multipart/form-data" autocomplete="off"
+                                    method="post" action="{{ url_for('main.edit_profile', username=username) }}">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row pt-3">
+                                        <div class="col text-center">
+                                            <div class="text-left">                                   
+                                                <img class="lazy img-fluid float-left rounded-circle" id="id_profile_image" style="max-width: 100px; border: 2px solid #810BD3;" 
+                                                    alt="{{ username }}"
+                                                    src="{{ url_for('static', filename='img/ajax-loading-profile.gif') }}"
+                                                    {% if profile_img_url %}
+                                                        data-src="{{ profile_img_url}}">
+                                                    {% else %}   
+                                                        data-src="{{ url_for('static', filename='img/no-picture.png') }}"> 
+                                                    {% endif %}  
+                                                <div class="row">
+                                                    <div class="col"> <p class="font-weight-bold pt-2 h4 text-lowercase"> {{ username }} </p> </div>
+                                                </div> 
+                                                <div class="row">
+                                                    <div class="col"> 
+                                                    <label class="text-primary">
+                                                        <span id="id_change_profile_image_link"> Alterar foto do perfil </span>
+                                                        <input type="file" accept="image/*" id="id_profile_file" name="profile_img" hidden>
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                            </div>     
+                                        </div>
+                                    </div>     
+                                    {% include "__flash_messages.html" %}
+                                    <div class="row align-items-center pt-2">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_full_name" class="h6 font-weight-bold">Nome</label>                            
+                                        </div>
+                                        <div class="col">      
+                                            {{ form.full_name(class_="form-control bg-light", id="id_full_name") }}
+                                        </div>
+                                    </div>                      
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_username" class="h6 font-weight-bold">Nome de usuário</label>                            
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.username(class_="form-control bg-light", id="id_username") }}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_email" class="h6 font-weight-bold">Email</label>                            
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.email(class_="form-control bg-light", id="id_email") }}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_gender" class="h6 font-weight-bold">Gênero</label>
+                                        </div>
+                                        <div class="col text-right">                                  
+                                            {{ form.gender(class_="form-control bg-light", id="id_gender") }}                            
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_website" class="h6 font-weight-bold">Site</label>                            
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.website(class_="form-control bg-light", id="id_website") }}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-3 text-right">      
+                                            <label for="id_bio" class="h6 font-weight-bold">Biografia</label>
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.bio(class_="form-control bg-light", id="id_bio", rows="3") }}                             
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col ml-4">      
+                                            <p class="h5">Privacidade da conta</p>
+                                        </div>                        
+                                    </div>
+                                    <div class="row pt-2">                          
+                                        <div class="col ml-4 text-left">      
+                                            <div class="custom-control custom-checkbox">
+                                                {{ form.is_private(class_="custom-control-input bg-light", id="id_is_private") }}                                
+                                                <label class="custom-control-label h6 font-weight-bold" for="id_is_private">Conta privada</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-2">
+                                        <div class="col ml-4 text-muted">     
+                                            <p> Quando sua conta é privada, somente as pessoas que você aprova podem ver suas fotos.
+                                                Seus seguidores existentes não serão afetados.
+                                            </p>
+                                        </div> 
+                                    </div>
+                                    <div class="row align-items-center pt-2 pb-4">                          
+                                        <div class="col-3 ml-4">      
+                                            <button type="submit" class="btn btn-primary font-weight-bold"> Enviar </button>
+                                        </div>                        
+                                        <div class="col">      
+                                            <a class="h6" href="#"> Desativar minha conta temporariamente </a>
+                                        </div>    
+                                    </div>
+                                </form>                      
+                            </div> 
+                        </div> 
+                    </div>  
+                    <br><br><br>
+                </div>         
+            </div>     
+            <div id="id_error_modal"></div>
+        </div>  
+    </div>
+{% endblock %}
+{% block footer %}
+   {% include "__footer.html" %}
+{% endblock %}
+{% block body_scripts %}
+   <script src="{{ url_for('static', filename='dropzone-5.7.0/dist/dropzone.js') }}"></script>      
+   <script src="{{ url_for('static', filename='js/fotogal-lib.js') }}"></script>   
+   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazy.min.js') }}"></script>           
+   <script type="text/javascript">
+      $(function() {
+         $('.lazy').Lazy();
+      });
+   </script>   
+   <script type="text/javascript">     
+    const CSRF_TOKEN = '{{ csrf_token() }}';
+    const IMAGE_AJAX_LOADING = "{{ url_for('static', filename='img/ajax-profile-img-loading.gif') }}";          
+    const URL_POST_PROFILE_IMAGE = "{{ url_for('api.profile_image_upload') }}";
+
+    $(document).ready(function() {
+       
+       $('#id_profile_image').css('cursor', 'pointer');
+       $('#id_change_profile_image_link').css('cursor', 'pointer');
+
+       $(function () {
+          $("#id_change_profile_image_link").hover(function () {
+             $(this).parent().css('text-decoration', 'underline');
+          }, function () {        
+             $(this).parent().css('text-decoration', 'none');
+          });
+       });         
+       
+       $('#id_profile_image').click(function() { 
+          $('#id_profile_file').trigger('click'); 
+       });
+
+       $('input[type=file]').change(function() { 
+          formData = new FormData();
+
+          if ( $(this).prop('files').length > 0 ) {
+            file = $(this).prop('files')[0];
+            formData.append('profile_img', file);              
+          }
+          
+          $.ajax({
+              url: URL_POST_PROFILE_IMAGE,
+              type: 'POST',
+              data: formData,
+              headers: { 
+                'X-CSRFToken': CSRF_TOKEN
+              },
+              processData: false,
+              contentType: false,
+              beforeSend: function() {
+
+                 $('#id_profile_image').prop('disabled', true);
+                 $('#id_change_profile_image_link').prop('disabled', true);
+
+                 $('#id_profile_image').attr('src', IMAGE_AJAX_LOADING);
+              },                
+              complete: function() {
+
+                 $('#id_change_profile_image_link').prop('disabled', false);
+                 $('#id_change_profile_image_link').prop('disabled', false);
+
+              },
+              success: function(response) {                   
+
+                 $('#id_profile_image').attr('src', response.profile_image_url);
+
+              },
+              error: function() {
+
+                 $('#id_profile_image').attr('src', "{{ url_for('static', filename='img/no-picture.png') }}");
+
+                 showErrorModal();
+              }
+          });
+
+       });
+
+    });    
+   </script>
+   {% include "__bootstrap_js_validation.html" %}
+{% endblock %}

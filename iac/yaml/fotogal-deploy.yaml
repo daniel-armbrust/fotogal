@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fotogal-dpp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fotogal
+  template:
+    metadata:
+      labels:
+        app: fotogal
+    spec:
+      containers:
+      - name: fotogal-container
+        image: gru.ocir.io/idreywyoj0pu/daniel.armbrust/fotogal:1.0.0
+        env:
+        - name: SECRET_KEY
+          value: "258166fe81d609c00ba2b0728e88def5233a80d323a85c124f3fa554c585"
+        - name: WTF_CSRF_SECRET_KEY
+          value: "258166fe81d609c00ba2C0728e88dEf5233a80d323a85c124f3fa554c585"
+        - name: AUTH_COOKIE_SECRET_KEY
+          value: "rEw4qpfSB-FTtA1bwXZ3iGx_cCh6J62VL0foavFKfNE="
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+      imagePullSecrets:
+        - name: fotogal-ocir-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fotogal-srv
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-shape: 10Mbps
+spec:
+  type: LoadBalancer
+  selector:
+    app: fotogal
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000

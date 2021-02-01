@@ -1,0 +1,83 @@
+{% extends "__base.html" %}
+{% block title %}Sugestões{% endblock %}
+{% block head %}
+   {{ super() }}
+   <meta name="robots" content="noimageindex, noarchive"> 
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">      
+{% endblock %}
+{% block body %}
+    {% include "__top_menu.html" %}      
+    <div id="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md">
+                            <h2 class="h4 pt-2">Sugestões Pra Você</h2> 
+                            <div class="bg-white shadow border w-100 pt-4 pb-2">        
+                                <div class="row">
+                                    <div class="col ml-4 mr-4">    
+                                        {% for user_to_follow in users_to_follow %}                                                                         
+                                            <div class="row pt-3">
+                                                <div class="col-3 text-right">
+                                                    <img class="lazy rounded-circle border border-secondary" style="width: 100px;" 
+                                                         alt="{{ user_to_follow.full_name }}" title="{{ user_to_follow.full_name }}"
+                                                         src="{{ url_for('static', filename='img/ajax-loading-card.gif') }}"
+                                                         data-src="{{ user_to_follow.profile_image_url }}">
+                                                </div>
+                                                <div class="col-5 ml-1 text-left">
+                                                    <p class="pt-3">
+                                                        <span class="font-weight-bold">{{ user_to_follow.username }}</span>
+                                                        <br>
+                                                        <span class="text-muted">{{ user_to_follow.full_name }}</span>
+                                                    </p>     
+                                                </div>
+                                                <div class="col text-right">
+                                                    <br> 
+                                                    <div id="id_follow_{{ user_to_follow.id }}">
+                                                        <button type="button" class="btn btn-primary font-weight-bold" id="id_btn_follow_{{ user_to_follow.id }}"
+                                                                {% if user_to_follow.is_private %}
+                                                                    onclick="sendFollowRequest('{{ url_for("api.follow") }}', '{{ user_id }}', '{{ user_to_follow.id }}', true);">
+                                                                {% else %}
+                                                                    onclick="sendFollowRequest('{{ url_for("api.follow") }}', '{{ user_id }}', '{{ user_to_follow.id }}', false);">
+                                                                {% endif %}
+                                                            Seguir
+                                                        </button>        
+                                                    </div>                                     
+                                                </div>
+                                            </div>   
+                                        {% endfor %}                                          
+                                    </div>
+                                </div> 
+                                <div class="row pt-3 pb-3">
+                                    <div class="col ml-4 mr-4">
+                                        <a class="btn btn-primary font-weight-bold w-100" href="{{ url_for('main.index') }}" role="button">Começar</a>                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+                <div class="col-md-3"></div>
+            </div> 
+            <br><br>
+            <div id="id_error_modal"></div>
+        </div> 
+    </div>
+{% endblock %}
+{% block footer %}
+     {% include "__footer.html" %}
+{% endblock %}
+{% block body_scripts %}
+   <script src="{{ url_for('static', filename='js/fotogal-lib.js') }}"></script>
+   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazy.min.js') }}"></script>
+   <script type="text/javascript">                   
+      const AJAX_BTN_FOLLOW_IMG_URL = "{{ url_for('static', filename='img/ajax-load-btn-follow.gif') }}";
+      const CSRF_TOKEN = '{{ csrf_token() }}';
+
+      $(function() {
+          $('.lazy').Lazy();
+      });       
+   </script> 
+{% endblock %}

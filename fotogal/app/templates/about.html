@@ -1,0 +1,42 @@
+{% extends "__base.html" %}
+{% block title %}Sobre{% endblock %}
+{% block head %}
+   {{ super() }}   
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">      
+{% endblock %}
+{% block body %}
+   {% include "__top_menu.html" %}      
+   <div id="id_page_content">
+      <div class="container h-100">         
+          <div class="row align-items-center h-100">
+                <div class="col-md-2 text-center"></div>
+                <div class="col-md-8 text-center"> 
+                    <div class="row">
+                            <div class="col-md">
+                                <div class="bg-white shadow border w-100 p-5">
+                                   <img class="img-fluid" alt="FotoGal"
+                                       src="{{ url_for('static', filename='img/fotogal-logo_300x82_transp.png') }}">
+                                   <h1>Sobre</h1>
+                                   <p class="h6">
+                                       <strong>FotoGal (Foto Galeria)</strong> é uma aplicação que simula as funcionalidades da rede
+                                       social <i><a href="https://www.instagram.com" target="_blank">Instagram &copy;</a></i>.
+                                       <br><br>
+                                       A aplicação foi construída sobre a infraestrutura de serviços que a 
+                                       <a href="https://www.oracle.com/br/cloud/" target="_blank">Oracle Cloud</a>
+                                       disponibiliza.
+                                   </p>
+                                </div>
+                            </div>
+                    </div>                 
+                </div>  
+                <div class="col-md-2 text-center"></div>
+           </div>  
+         <div id="id_error_modal"></div>
+      </div> 
+   </div> 
+{% endblock %}
+{% block footer %}
+   {% include "__footer.html" %}
+{% endblock %}
+{% block body_scripts %}  
+{% endblock %}
