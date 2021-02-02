@@ -30,7 +30,7 @@ Por enquanto, a aplicação **_FotoGal_** utiliza os seguintes serviços do _[OC
 
 ## Topologia
 
-![alt_text](./gthimgs/topologia.jpeg  "image_tooltip")
+![alt_text](./gthimgs/topologia.jpeg  "Topologia")
 
 ## Descrição dos diretórios (código-fonte)
 ```
@@ -86,7 +86,7 @@ Por enquanto, a aplicação **_FotoGal_** utiliza os seguintes serviços do _[OC
 
 ```
   
-2. Instalar os binários do _Terraform _e _kubectl_:
+2. Instalar os binários do _Terraform_ e _kubectl_:
 
 *  [Terraform](https://www.terraform.io/downloads.html)
 
@@ -161,7 +161,7 @@ Docker version 19.03.11-ol, build 748876d
 
 ```
 
-[darmbrust@oci-dev ~]$ git https://github.com/daniel-armbrust/fotogal.git
+[darmbrust@oci-dev ~]$ git clone https://github.com/daniel-armbrust/fotogal.git
 
 ```
 
@@ -172,14 +172,18 @@ Docker version 19.03.11-ol, build 748876d
 
 ```
 
-5. Criar uma chave privada (sem senha), para utilizar o SDK do OCI:
+5. Criar uma chave pública e privada (sem senha), para utilizar o _[SDK](https://docs.oracle.com/pt-br/iaas/Content/API/SDKDocs/pythonsdk.htm)_ do _OCI_:
 
 ```
 
 [darmbrust@oci-dev fotogal]$ openssl genrsa -out fotogal/oci_config/oci_api_key.pem 2048
+[darmbrust@oci-dev fotogal]$ chmod 0400 fotogal/oci_config/oci_api_key.pem
+
+[darmbrust@oci-dev fotogal]$ openssl rsa -pubout -in fotogal/oci_config/oci_api_key.pem -out fotogal/oci_config/oci_api_key_public.pem  
 
 ```
-  
+
+* A chave pública não será usada pela aplicação. A mesma deve inserida ao seu usuário no _OCI_.
 
 6. Criar um arquivo de configuração no seguinte formato abaixo:
 
@@ -196,16 +200,16 @@ compartment=<YOUR OCID ROOT COMPARTMENT>
 ```
 
 
-* Preencher os campos em destaque com os valores apropriados do seu usuário/tenant no OCI. Para maiores informações, consulte a documentação oficial: _[Chaves e OCIDs Necessários](https://docs.oracle.com/pt-br/iaas/Content/API/Concepts/apisigningkey.htm)_
+* Preencher os campos em destaque com os valores apropriados do seu _usuário/tenant_ no _OCI_. Para maiores informações, consulte a documentação oficial: _[Chaves e OCIDs Necessários](https://docs.oracle.com/pt-br/iaas/Content/API/Concepts/apisigningkey.htm)_
 
 7. Criar a _imagem Docker_:
 
-![alt_text](./gthimgs/tenancy-namespace.jpg  "image_tooltip")
+![alt_text](./gthimgs/tenancy-namespace.jpg  "Tenancy Namespace")
 
 * Obter o valor para a **_Chave da Região_** correspondente a região do _OCI_ no qual o deploy da aplicação será feito. Consulte a documentação oficial _[Regiões e Domínios de Disponibilidade](https://docs.oracle.com/pt-br/iaas/Content/General/Concepts/regions.htm)_ para outros valores. Aqui, iremos utilizar _GRU_ que corresponde a _São Paulo, Brazil_.
   
 
-![alt_text](./gthimgs/chave-regiao.jpg  "image_tooltip")
+![alt_text](./gthimgs/chave-regiao.jpg  "Chave Região")
 
 
 * Criar a **_TAG_**  utilizada para construção da _imagem _que deve obedecer ao padrão:
@@ -233,12 +237,12 @@ python 3.8-alpine                                           024f9f60790b   5 day
 
 8. Criar um _Token de Autenticação_ para envio da _imagem Docker_ criada ao _OCI_.
 
-![alt_text](./gthimgs/auth-token.jpg  "image_tooltip")
+![alt_text](./gthimgs/auth-token.jpg  "Token de Autenticação")
 
 
 9. Enviar a _imagem Docker_ que foi criada ao _OCI_:
 
-* Realizar o _login_ no serviço _OCIR_, informando seu _nome de usuário_ e o **_Token de Autenticação_** que foi criado. Lembrando que neste exemplo, estamos utilizando os serviços do _OCI _presentes na região _São Paulo, Brazil (GRU)_.
+* Realizar o _login_ no serviço _OCIR_, informando seu _nome de usuário_ e o **_Token de Autenticação_** que foi criado. Lembrando que neste exemplo, estamos utilizando os serviços do _OCI_ presentes na região _São Paulo, Brazil (GRU)_.
 
 * Para maiores informações sobre todo o processo de envio de _imagens Docker_ ao _OCI_, consulte a documentação oficial: _[Push an Image to Oracle Cloud Infrastructure Registry](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/index.html)_
 
@@ -278,7 +282,7 @@ python 3.8-alpine                                           024f9f60790b   5 day
 
 10. Criar a infraestrutura no _OCI_ utilizando os scripts _Terraform_.
 
-* Dentro do diretório **iac/** foi criado o script **run.sh** que facilita a execução dos comandos do Terraform. Para criar os recursos do ambiente de produção, execute os comandos:
+* Dentro do diretório **_iac/_** foi criado o script **_run.sh_** que facilita a execução dos comandos do _Terraform_. Para criar os recursos do ambiente de produção, execute os comandos:
 
   
 
@@ -440,4 +444,4 @@ fotogal-srv  LoadBalancer  10.96.6.189   129.151.32.148  80:31399/TCP   46s
 18. Pronto! Basta acessar a aplicação pelo _IP público_ do _[Load Balancer](https://docs.oracle.com/pt-br/iaas/Content/Balance/Concepts/balanceoverview.htm)_:
   
 
-![alt_text](./gthimgs/fotogal-login.jpg "image_tooltip")
+![alt_text](./gthimgs/fotogal-login.jpg "FotoGal Login")
