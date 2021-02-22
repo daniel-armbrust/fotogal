@@ -9,11 +9,11 @@
 
 **_FotoGal (Foto Galeria)_** is a _Web/Cloud Native_ application written using the _[Python](https://www.python.org/)/[Flask](https://flask.palletsprojects.com)_ framework, on the _[Oracle Cloud (OCI)](https://www.oracle.com/br/cloud/)_ infrastructure. The application is a _[“proof of concept” (PoC)](https://en.wikipedia.org/wiki/Proof_of_concept),_ which mimics the basic features of the _[Instagram](https://www.instagram.com/)_ application on the services available at _[OCI](https://www.oracle.com/br/cloud/)_.
 
-Fow now, the application **_FotoGal_** uses the following services from _[OCI](https://www.oracle.com/cloud/)_:
+For now, the application **_FotoGal_** uses the following services from _[OCI](https://www.oracle.com/cloud/)_:
 
 *  [Object Storage](https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm)
 
-*  [Banco de Dados NoSQL](https://docs.oracle.com/en-us/iaas/nosql-database/index.html)
+*  [NoSQL Database](https://docs.oracle.com/en-us/iaas/nosql-database/index.html)
 
 *  [Log](https://docs.oracle.com/en-us/iaas/Content/Logging/Concepts/loggingoverview.htm)
 
@@ -21,7 +21,7 @@ Fow now, the application **_FotoGal_** uses the following services from _[OCI](h
 
 *  [Load Balancer](https://docs.oracle.com/en-us/iaas/Content/Balance/Concepts/balanceoverview.htm)
 
-## Índice
+## Table of contents
 
 * Topology
 * Description of directories (source code)
@@ -45,8 +45,8 @@ Fow now, the application **_FotoGal_** uses the following services from _[OCI](h
 ├── gthimgs/                    # GitHub Markdown images
 ├── iac/                        # Infrastructure as code (IaC) Terraform
 │    ├── hml/                   # IaC Terraform for Homologation environment
-│    ├── dev/                   # IaC Terraform for Development Environment
-│    ├── prd/                   # IaC Terraform for Production Environment
+│    ├── dev/                   # IaC Terraform for Development environment
+│    ├── prd/                   # IaC Terraform for Production environment
 │    ├── yaml/                  # YAML files for Kubernetes descriptors
 │    └── run.sh                 # Helper script to run Terraform
 ├── tools/                      # Miscellaneous scripts / utilities
