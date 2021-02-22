@@ -183,7 +183,7 @@ Docker version 19.03.11-ol, build 748876d
 
 ```
 
-* A chave pública não será usada pela aplicação. A mesma deve inserida ao seu usuário no _OCI_.
+* A **_chave pública_** não será usada pela aplicação. A mesma deve inserida ao seu usuário no _OCI_.
 
 6. Criar um arquivo de configuração no seguinte formato abaixo:
 
@@ -212,7 +212,7 @@ compartment=<YOUR OCID ROOT COMPARTMENT>
 ![alt_text](./gthimgs/chave-regiao.jpg  "Chave Região")
 
 
-* Criar a **_TAG_**  utilizada para construção da _imagem _que deve obedecer ao padrão:
+* Criar a **_TAG_** utilizada para construção da _imagem_ que deve obedecer ao padrão:
 
 **_&lt;Chave da Região>_.ocir.io/_&lt;Tenancy Namespace>_/_&lt;Usuário/Repositório>_/_&lt;Nome/Versão da Aplicação>_**
 
