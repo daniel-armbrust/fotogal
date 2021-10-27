@@ -1,5 +1,5 @@
 #
-# modules/nosql/table/providers.tf
+# modules/oke/cluster/providers.tf
 # https://registry.terraform.io/providers/hashicorp/oci/latest/docs
 #
 

@@ -11,13 +11,13 @@ variable "compartment_id" {
 variable "nosql_table" {
     description = "(Optional) NoSQL Database Table properties."
 
-    type = list(object({
+    type = object({
         name = string
         ddl_statement = string
         read_units = string
         write_units = string
         storage_gbs = string
-    }))
+    })
 
     default = null
 }
