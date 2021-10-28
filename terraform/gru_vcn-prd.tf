@@ -14,7 +14,7 @@ module "gru_vcn-prd" {
 
     compartment_id = var.compartment_id
     display_name = "gru_vcn-prd"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["10.39.0.0/16"]
     dns_label = "gruvcnprd"
     is_ipv6enabled = false
 }
@@ -243,7 +243,7 @@ module "gru_subpub-frontend_vcn-prd" {
 
     display_name = "gru_subpub-frontend_vcn-prd"    
     dns_label = "subpubfrtend"
-    cidr_block = "10.0.1.0/24"    
+    cidr_block = "10.39.1.0/24"    
     prohibit_public_ip_on_vnic = false
 }
 
@@ -262,9 +262,6 @@ module "gru_subprv-backend_vcn-prd" {
 
     display_name = "gru_subprv-backend_vcn-prd"    
     dns_label = "subprvbckend"
-    cidr_block = "10.0.2.0/24"
+    cidr_block = "10.39.2.0/24"
     prohibit_public_ip_on_vnic = true
 }
-
-
-
