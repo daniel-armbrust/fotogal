@@ -21,7 +21,7 @@ variable "subnet_id" {
 variable "k8s_version" {
     description = "(Required) (Updatable) The version of Kubernetes to install into the cluster masters."   
     type = string
-    default = "1.20.11"
+    default = "v1.20.11"
 }
 
 variable "cluster_name" {

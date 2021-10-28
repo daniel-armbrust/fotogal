@@ -36,6 +36,6 @@ module "gru_oke-nodepool-fotogal_prd" {
 
     nodepool_name = "oke_nodepool_fotogal"
     nodepool_ad = local.ads.gru_ad1_name
-    node_image_id = local.compute_image_id.gru.ol8
+    node_image_id = local.compute_image_id.gru.ol7
     node_count = 2
 }

@@ -16,7 +16,7 @@ variable "cluster_id" {
 variable "k8s_version" {
     description = "(Required) (Updatable) The version of Kubernetes to install on the nodes in the node pool."   
     type = string
-    default = "1.20.11"
+    default = "v1.20.11"
 }
 
 variable "nodepool_name" {
