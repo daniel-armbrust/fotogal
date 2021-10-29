@@ -128,6 +128,7 @@ Docker version 19.03.11-ol, build 748876d
 
 ```
 [darmbrust@oci-dev fotogal]$ openssl genrsa -out fotogal/oci_config/oci_api_key.pem 2048
+
 [darmbrust@oci-dev fotogal]$ chmod 0400 fotogal/oci_config/oci_api_key.pem
 
 [darmbrust@oci-dev fotogal]$ openssl rsa -pubout -in fotogal/oci_config/oci_api_key.pem -out fotogal/oci_config/oci_api_key_public.pem
