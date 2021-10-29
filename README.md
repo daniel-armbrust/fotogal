@@ -5,13 +5,9 @@
 For now, the application **_FotoGal_** uses the following services from _[OCI](https://www.oracle.com/cloud/)_:
 
 *  [Object Storage](https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm)
-
 *  [NoSQL Database](https://docs.oracle.com/en-us/iaas/nosql-database/index.html)
-
 *  [Log](https://docs.oracle.com/en-us/iaas/Content/Logging/Concepts/loggingoverview.htm)
-
 *  [Container Engine (Kubernetes)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm)
-
 *  [Load Balancer](https://docs.oracle.com/en-us/iaas/Content/Balance/Concepts/balanceoverview.htm)
 
 ## Table of contents
@@ -60,9 +56,7 @@ For now, the application **_FotoGal_** uses the following services from _[OCI](h
 
 ```
 [darmbrust@oci-dev ~]$ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
-```
 
-```
 [darmbrust@oci-dev ~]$ oci -v
 2.20.0
 ```
@@ -75,11 +69,8 @@ For now, the application **_FotoGal_** uses the following services from _[OCI](h
 [darmbrust@oci-dev ~]$ wget https://releases.hashicorp.com/terraform/0.14.5/terraform_0.14.5_linux_amd64.zip -P bin/
 
 [darmbrust@oci-dev ~]$ unzip bin/terraform_0.14.5_linux_amd64.zip -d bin/
-```
 
-```
 [darmbrust@oci-dev ~]$ bin/terraform -v
-
 Terraform v0.14.5
 ```
 
