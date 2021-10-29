@@ -169,3 +169,9 @@ terraform.rc
 
 # Local History for Visual Studio Code
 .history/
+
+# Application specific files
+*.key
+*.pem
+*.bak
+fotogal/oci_config/oci.conf

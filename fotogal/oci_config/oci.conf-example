@@ -1,0 +1,6 @@
+[DEFAULT]
+user=<USER OCID>
+fingerprint=<KEY FINGERPRINT>
+tenancy=<TENANCY OCID>
+region=<OCI REGION>
+compartment=<YOUR OCID ROOT COMPARTMENT>

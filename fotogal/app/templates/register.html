@@ -1,0 +1,101 @@
+{% extends "__base.html" %}
+{% block title %}Registro{% endblock %}
+{% block head %}
+   {{ super() }}   
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">   
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="container">        
+        <div class="row pt-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="bg-white shadow border w-100 text-center pt-4 pb-2">
+                    <img class="img-fluid" src="{{ url_for('static', filename='img/fotogal-logo_300x82_transp.png') }}">
+                    <h2 class="h5 pt-2">Inscreva-se para ver fotos e vídeos de seus amigos.</h2>       
+                    <form method="post" action="{{ url_for('main.register') }}" autocomplete="off">
+                        {{ form.hidden_tag() }}
+                        <div class="col-auto">
+                           {% include "__flash_messages.html" %}
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">   
+                                <label for="{{ form.email.id }}" class="sr-only">Email address</label>
+                                {{ form.email(class_="form-control bg-light", placeholder="E-mail", id="id_email") }}   
+                                {% for email_error in form.email.errors %}    
+                                   <p class="pt-2 text-left h6 text-danger">&nbsp;&bull; {{ email_error }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">                        
+                                <label for="{{ form.full_name.id }}" class="sr-only">Nome Completo</label>
+                                {{ form.full_name(class_="form-control bg-light", placeholder="Nome Completo", id="id_full_name") }}            
+                                {% for full_name_error in form.full_name.errors %}    
+                                   <p class="pt-2 text-left h6 text-danger">&nbsp;&bull; {{ full_name_error }}</p>
+                                {% endfor %}                     
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">     
+                                <label for="{{ form.username.id }}" class="sr-only">Nome do usuário</label>
+                                {{ form.username(class_="form-control bg-light", placeholder="Nome do usuário", id="id_username") }}
+                                {% for username_error in form.username.errors %}    
+                                   <p class="pt-2 text-left h6 text-danger">&nbsp;&bull; {{ username_error }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">                        
+                                <label for="{{ form.password.id }}" class="sr-only">Senha</label>
+                                {{ form.password(class_="form-control bg-light", placeholder="Senha", id="id_password") }}  
+                                {% for password_error in form.password.errors %}    
+                                   <p class="pt-2 text-left h6 text-danger">&nbsp;&bull; {{ password_error }}</p>
+                                {% endfor %}                              
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">    
+                                {{ form.submit(class_="btn btn-primary mb-2 w-50", id="id_submit") }}
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-center">                        
+                                <p class="text-muted">
+                                    Ao se inscrever, você concorda com nossos <a class="text-muted text-decoration-none" href="#">Termos</a>, 
+                                    <a class="text-muted text-decoration-none" href="#">Política de Dados</a> e 
+                                    <a class="text-muted text-decoration-none" href="#">Política de Cookies</a>.
+                                </p>                 
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>           
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="bg-white shadow border w-100 text-center pt-4 pb-2">
+                    <p class="text-muted">Possui uma conta? <a href="{{ url_for('auth.login') }}">Log In</a></p>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <br>
+    </div> 
+{% endblock %}
+{% block body_scripts %}
+{% endblock %}

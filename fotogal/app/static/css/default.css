@@ -1,0 +1,46 @@
+html {
+  height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #47525d;    
+    padding: 100px 0 0 0; 
+    background-color: rgba(var(--b3f,250,250,250),1);
+}
+
+nav {
+    background-color: white;
+}
+
+footer {
+  background-color: white;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.jFiler {
+    font-family: inherit;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+#id_page_content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}

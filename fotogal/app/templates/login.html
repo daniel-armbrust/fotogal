@@ -1,0 +1,56 @@
+{% extends "__base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+   {{ super() }}   
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">   
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+{% block body %}
+   <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md">
+                    <img class="img-fluid" src="{{ url_for('static', filename='img/login-left-img.png') }}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md text-center">
+                        <div class="bg-white shadow border w-100 text-center pt-4 pb-2">
+                            <form class="form-signin" method="post" action="{{ url_for('auth.login') }}">
+                                {{ form.hidden_tag() }}
+                                <img class="img-fluid" src="{{ url_for('static', filename='img/fotogal-logo_300x82_transp.png') }}" alt="FotoGal">                              
+                                <br><br>
+                                {% include "__flash_messages.html" %}
+                                <label for="{{ form.email.id }}" class="sr-only">Email</label>
+                                {{ form.email(class_="form-control bg-light", placeholder="E-mail", id="id_email") }}                
+                                <label for="{{ form.password.id }}" class="sr-only">Senha</label>
+                                {{ form.password(class_="form-control bg-light", placeholder="Senha", id="id_password") }}           
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" value="remember-me"> Lembre-se de mim
+                                    </label>
+                                </div>
+                                {{ form.submit(class_="btn btn-lg btn-primary btn-block", id="id_submit") }}                         
+                                <br>
+                                <p><a class="text-decoration-none" href="#">Esqueceu sua senha?</a></p>
+                                <p class="mt-5 mb-3 text-muted">&copy; FotoGal 2019-2020</p>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row pt-4">
+                    <div class="col-md text-center">
+                        <div class="bg-white shadow border w-100 text-center pt-4 pb-2">
+                            <p>Não possui uma conta? <a href="{{ url_for('main.register') }}">Cadastre-se aqui</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+{% endblock %}
+{% block body_scripts %}
+{% endblock %}

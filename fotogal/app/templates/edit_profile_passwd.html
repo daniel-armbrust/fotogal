@@ -1,0 +1,106 @@
+{% extends "__base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block head %}
+   {{ super() }}
+   <meta name="robots" content="noindex, nofollow">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">      
+{% endblock %}
+{% block body %}
+    {% include "__top_menu.html" %}      
+    <div id="id_page_content">
+        <div class="container">
+            <div class="row">         
+                <div class="col-12">
+                    <div class="bg-white shadow border w-100 p-2">
+                        <div class="row">
+                            <div class="col-md-3 ml-2" id="id_profile_left_menu" style="border-right: 1px solid #EEEEEE;">
+                                <div class="row">
+                                    <div class="col ml-1" id="id_col_edit_profile">
+                                        <br> 
+                                        <p><a href="{{ url_for('main.edit_profile', username=username) }}" class="text-decoration-none text-reset h5">Editar Perfil</a></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col ml-1" id="id_col_change_password" style="border-left: 4px solid #810BD3;">
+                                        <br>
+                                        <p><a href="{{ url_for('main.edit_profile_passwd', username=username) }}" class="text-reset h5">Alterar Senha</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <form class="needs-validation" novalidate autocomplete="off"
+                                    method="post" action="{{ url_for('main.edit_profile_passwd', username=username) }}">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row pt-3">
+                                        <div class="col text-center">
+                                            <div class="text-left">                                       
+                                                <img class="lazy img-fluid float-left rounded-circle" style="max-width: 100px; border: 2px solid #810BD3;" alt="{{ username }}"
+                                                    src="{{ url_for('static', filename='img/ajax-loading-profile.gif') }}"
+                                                    {% if profile_dict.profile_image_url %}
+                                                        data-src="{{ profile_dict.profile_image_url }}">
+                                                    {% else %}
+                                                        data-src="{{ url_for('static', filename='img/no-picture.png') }}">
+                                                    {% endif %}                                                     
+                                                <div class="row">
+                                                    <div class="col"> <p class="font-weight-bold pt-2 h4 text-lowercase"> {{ username }} </p> </div>
+                                                </div>                                 
+                                            </div>     
+                                        </div>
+                                    </div>                                        
+                                    {% include "__flash_messages.html" %}                           
+                                    <div class="row align-items-center pt-2">                          
+                                        <div class="col-5 text-right">      
+                                            <label for="id_old_password" class="h6 font-weight-bold">Senha antiga</label>                            
+                                        </div>
+                                        <div class="col">      
+                                            {{ form.old_password(class_="form-control bg-light", id="id_old_password") }}
+                                        </div>
+                                    </div>                      
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-5 text-right">      
+                                            <label for="id_new_password" class="h6 font-weight-bold">Nova senha</label>                            
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.new_password(class_="form-control bg-light", id="id_new_password") }}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pt-4">                          
+                                        <div class="col-5 text-right">      
+                                            <label for="id_confirm_new_password" class="h6 font-weight-bold">Confirmar nova senha</label>                            
+                                        </div>
+                                        <div class="col text-right">      
+                                            {{ form.confirm_new_password(class_="form-control bg-light", id="id_confirm_new_password") }}
+                                        </div>
+                                    </div>                      
+                                    <div class="row align-items-center pt-4 pb-4">                          
+                                        <div class="col-3 ml-4">      
+                                            <button type="submit" class="btn btn-primary font-weight-bold"> Alterar senha </button>
+                                        </div>                                                  
+                                    </div>
+                                    <div class="row align-items-center pt-1 pb-4">                          
+                                        <div class="col-4 ml-4">       
+                                            <a class="h6" href="#"> Esqueceu a senha? </a>
+                                        </div>    
+                                    </div>    
+                                </form>                      
+                            </div> 
+                        </div> 
+                    </div>  
+                    <br><br><br>
+                </div>         
+            </div>     
+        </div>  
+    </div>
+{% endblock %}
+{% block footer %}
+   {% include "__footer.html" %}
+{% endblock %}
+{% block body_scripts %}
+   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazy.min.js') }}"></script>
+   <script type="text/javascript">
+      $(function() {
+        $('.lazy').Lazy();
+      });
+   </script>   
+   {% include "__bootstrap_js_validation.html" %}
+{% endblock %}
