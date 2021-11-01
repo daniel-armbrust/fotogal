@@ -40,13 +40,12 @@ For now, the application **_FotoGal_** uses the following services from _[OCI](h
 
 ## Prerequisites
 
-*  [A valid OCI account ](https://www.oracle.com/cloud/free/)
-*  [Oracle Linux 7 (for creating / sending the application container to the OCI)](https://www.oracle.com/linux/)
-*  [Oracle Cloud CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#InstallingCLI__PromptsInstall)
-*  [Terraform](https://www.terraform.io/downloads.html)
-*  [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-
-*  [Docker](https://docs.docker.com/engine/)
+* [A valid OCI account ](https://www.oracle.com/cloud/free/)
+* [Oracle Linux 7 (for creating / sending the application container to the OCI)](https://www.oracle.com/linux/)
+* [Oracle Cloud CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#InstallingCLI__PromptsInstall)
+* [Terraform](https://www.terraform.io/downloads.html)
+* [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [Docker](https://docs.docker.com/engine/)
 
 ## How to use
 
