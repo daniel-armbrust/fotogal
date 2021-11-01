@@ -14,7 +14,7 @@ idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
-oci==3.2.1
+oci==2.49.0
 pycparser==2.20
 pyOpenSSL==19.1.0
 python-dateutil==2.8.1
